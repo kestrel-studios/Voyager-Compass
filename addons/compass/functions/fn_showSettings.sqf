@@ -207,3 +207,5 @@ with uiNamespace do {
   _ctrl ctrlCommit 0;
   _ctrl ctrlSetTooltip _tooltip;
 } forEach nc_dialog_controls;
+
+[] spawn UGTX_fnc_showCompass;
