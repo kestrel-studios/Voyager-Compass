@@ -1,2 +1,2 @@
-# Voyager-Comapss
-A PUBG style compass for Arma 3/
+# Voyager Comapss
+A PUBG style compass for Arma 3.
