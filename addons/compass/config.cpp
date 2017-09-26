@@ -9,6 +9,6 @@ class CfgPatches {
   };
 };
 
-#include CfgMods.hpp
-#include CfgFunctions.hpp
-#include CfgVehicles.hpp
+#include "CfgMods.hpp"
+#include "CfgFunctions.hpp"
+#include "CfgVehicles.hpp"
