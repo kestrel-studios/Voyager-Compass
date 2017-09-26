@@ -2,13 +2,13 @@
   version 1.0
   description: shows the compass with saved settings or default setttings if no settings saved
 */
-systemchat "init fn_showCompass";
+systemchat "init UGTX_fnc_showCompass";
 
 disableSerialization;
 
 
 
-_nc_settings = [] call fn_loadSettings;
+_nc_settings = [] call UGTX_fnc_loadSettings;
 if (isNil "_nc_settings") then {
   _nc_settings = [0.499889,0.0346965,3.16098,1.86439,0,1.18143,"C0",0.753254,"PuristaLight",0,1,1,-0.0340903,5,1,0,"B1B1","FFFFFF"];
 };
@@ -34,7 +34,7 @@ nc_marker_offset      = 0.04 + nc_barOffsetY;
 
 
 ("compassTitle" call BIS_fnc_rscLayer) cutRsc ["RscTitleDisplayEmpty", "PLAIN"];
-_comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;
+_comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;
 
 /// rendering of compass
 currentMarkers = [];

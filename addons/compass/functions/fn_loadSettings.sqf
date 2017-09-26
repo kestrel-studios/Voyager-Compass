@@ -2,7 +2,7 @@
   version 1.0
   description: gets settings from profileNameSpace
 */
-systemchat "init fn_loadSettings";
+systemchat "init UGTX_fnc_loadSettings";
 
 _nc_settings = profileNamespace getVariable "nc_settings";
 

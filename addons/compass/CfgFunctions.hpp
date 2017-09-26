@@ -2,11 +2,13 @@ class CfgFunctions {
   class UGTX {
     class Compass {
       file="\k\ugtx\addons\compass\functions";
-      class showCompass {};
-      class showSettings {};
-      class saveSettings {};
+      class compileCompass {};
+      class initCompass {};
       class loadSettings {};
       class removeString {};
+      class saveSettings {};
+      class showCompass {};
+      class showSettings {};
     };
   };
 };

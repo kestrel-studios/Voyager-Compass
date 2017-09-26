@@ -2,4 +2,4 @@
   version 1.0
   description:
 */
-systemchat "init fn_initCompass";
+systemchat "init UGTX_fnc_initCompass";

@@ -2,10 +2,10 @@
   version 1.0
   description: opens the settings dialog with saved settings shown or default if no settings saved
 
-  usage: [] call fn_showSettings; IMPORTANT: fn_showCompass has to be executed afterwards!
+  usage: [] call UGTX_fnc_showSettings; IMPORTANT: UGTX_fnc_showCompass has to be executed afterwards!
 
 */
-systemchat "init fn_showSettings";
+systemchat "init UGTX_fnc_showSettings";
 
 disableSerialization;
 
@@ -28,7 +28,7 @@ nc_lb_fontOption = [
 "RobotoCondensedLight",
 "TahomaB"];
 
-folder = [] call fn_loadSettings;
+folder = [] call UGTX_fnc_loadSettings;
 if (isNil "folder") then {
   folder = [0.499889,0.0346965,3.16098,1.86439,0,1.18143,"C0",0.753254,"PuristaLight",0,1,1,-0.0340903,5,1,0,"B1B1","FFFFFF"];
 };
@@ -85,7 +85,7 @@ nc_dialog_controls = [
 	[2401,"nc_close",[1,"X",[0.391719 * safezoneW + safezoneX,0.94 * safezoneH + safezoneY,0.0154688 * safezoneW,0.022 * safezoneH],[0.07,0.07,0.07,1],[0.93,0.93,0.93,1],[-1,-1,-1,-1],"Close without save.","RscButton"],[],
   ["(uiNamespace getVariable 'nc_dialogDisplay') closeDisplay 2"]],
 	[2800,"ncShadow",[1,"",[0.391719 * safezoneW + safezoneX,0.709 * safezoneH + safezoneY,0.0103125 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"SHADOW. Enable the dropshadow for the cardinal points.","RscCheckBox"],[],
-	[ncShadow, "folder set [10, (_this select 1)]; switch (_this select 1) do { case (0): { ncShadow = 0; }; case (1): { ncShadow = 2; };};  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;"]],
+	[ncShadow, "folder set [10, (_this select 1)]; switch (_this select 1) do { case (0): { ncShadow = 0; }; case (1): { ncShadow = 2; };};  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;"]],
 
 	[1901,"ncX",[1,"",[0.340156 * safezoneW + safezoneX,0.302 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"HORIZONTAL POSITION. Set the correct horizontal position you desire.","RscSlider"],[],
 	[[/*range*/0,1, ncX], "folder set [0, (_this select 1)]; nc_barOffsetX = ((_this select 1) * safezoneH + safezoneY)"]],
@@ -103,21 +103,21 @@ nc_dialog_controls = [
 	[["Arma 3","Battlegrounds"], "folder set [15, (_this select 1)]; ncType = (_this select 1)", ncTypeNr]],
 
 	[1904,"nc_fontSize",[1,"",[0.340156 * safezoneW + safezoneX,0.555 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"SIZE-FONT. Determines the size of the individual cardinal points.","RscSlider"],[],
-	[[/*range*/0.8,1.4, ncFontSize], "folder set [5, (_this select 1)]; ncFontSize = (_this select 1); _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;"]],
+	[[/*range*/0.8,1.4, ncFontSize], "folder set [5, (_this select 1)]; ncFontSize = (_this select 1); _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;"]],
 
 	[1905,"nc_fontAlpha",[1,"",[0.340156 * safezoneW + safezoneX,0.588 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"TRANSPARENCY. Set the visibility of the whole compass.","RscSlider"],[],
-	[[/*range*/0,1,ncAlphaNr], "folder set [7, (_this select 1)]; _clr = [0,0,0,(_this select 1)] call BIS_fnc_ColorRGBAtoHTML; _cutBelow = [0,1, _clr] call fn_removeString; _cutAbove = [2,6, _cutBelow] call fn_removeString; folder set [6, _cutAbove]; ncAlpha = _cutAbove; _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;"]],
+	[[/*range*/0,1,ncAlphaNr], "folder set [7, (_this select 1)]; _clr = [0,0,0,(_this select 1)] call BIS_fnc_ColorRGBAtoHTML; _cutBelow = [0,1, _clr] call UGTX_fnc_removeString; _cutAbove = [2,6, _cutBelow] call UGTX_fnc_removeString; folder set [6, _cutAbove]; ncAlpha = _cutAbove; _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;"]],
 
 	[2103,"nc_font",[1,"",[0.319531 * safezoneW + safezoneX,0.665 * safezoneH + safezoneY,0.118594 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"FONT.  Switch between different looks with the font.","RscCombo"],[],
   [["EtelkaMonospacePro","EtelkaMonospaceProBold","EtelkaNarrowMediumPro","LucidaConsoleB","PuristaBold","PuristaLight","PuristaMedium","PuristaSemiBold","RobotoCondensed","RobotoCondensedBold","RobotoCondensedLight","TahomaB"],
-  "folder set [13, (_this select 1)];folder set [8, (nc_lb_fontOption select (_this select 1))]; ncFontOptionNr = (_this select 1); ncFontOption = nc_lb_fontOption select (_this select 1);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;", ncFontOptionNr]],
+  "folder set [13, (_this select 1)];folder set [8, (nc_lb_fontOption select (_this select 1))]; ncFontOptionNr = (_this select 1); ncFontOption = nc_lb_fontOption select (_this select 1);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;", ncFontOptionNr]],
 
   [1005,"ncColor_code",[1,"",[0.326719 * safezoneW + safezoneX,0.621 * safezoneH + safezoneY,0.04125 * safezoneW,0.022 * safezoneH],[1,1,1,1],[0.03,0.03,0.03,1],[-1,-1,-1,-1],"","RscEdit"],[]],
 	[2102,"ncColor",[1,"",[0.371094 * safezoneW + safezoneX,0.621 * safezoneH + safezoneY,0.0670312 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"COLOR. Choose between predefined colors.","RscCombo"],[],
-	[["Custom","White","Black"], "folder set [14, (_this select 1)]; folder set [17, (nc_lb_colorOption select (_this select 1))]; ncColorOption = nc_lb_colorOption select (_this select 1);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;", ncColorNr]],
+	[["Custom","White","Black"], "folder set [14, (_this select 1)]; folder set [17, (nc_lb_colorOption select (_this select 1))]; ncColorOption = nc_lb_colorOption select (_this select 1);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;", ncColorNr]],
 
 	[2801,"nc_invert",[1,"",[0.345312 * safezoneW + safezoneX,0.709 * safezoneH + safezoneY,0.0103125 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"INVERT. Switch between the option of the needles being at the top or bottom of the cardinal points.","RscCheckBox"],[],
-	[ncInvert, "folder set [9, (_this select 1)]; ncInvert = (_this select 1);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;"]],
+	[ncInvert, "folder set [9, (_this select 1)]; ncInvert = (_this select 1);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;"]],
 
 	[1906,"nc_markerY",[1,"",[0.340156 * safezoneW + safezoneX,0.841 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"VERTICAL OFFSET. Set the correct vertical offset you desire.","RscSlider"],[],
 	[[/*range*/-2,2, ncMarkerY], "folder set [12, (_this select 1)]; nc_marker_offset = (_this select 1) + nc_barOffsetY"]],
@@ -198,7 +198,7 @@ with uiNamespace do {
       _ctrl = _display ctrlCreate [_type, _idc];
       _ctrl ctrlSetTextColor [1, 1, 1, 1];
       _ctrl ctrlSetBackgroundColor [0, 0, 0, 1];
-			_ctrl ctrlAddEventHandler ["KeyUp",{ncColorOption =  ctrlText ((uiNamespace getVariable "nc_dialogDisplay") displayCtrl 1005);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call fn_compileCompass;}];
+			_ctrl ctrlAddEventHandler ["KeyUp",{ncColorOption =  ctrlText ((uiNamespace getVariable "nc_dialogDisplay") displayCtrl 1005);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;}];
 			_ctrl ctrlSetText ncColorOption;
 		};
   };

@@ -2,7 +2,7 @@
   version 1.0
   description: just move that function to it's own file
 */
-systemchat "init fn_removeString";
+systemchat "init UGTX_fnc_removeString";
 
 params ["_from", "_to", "_string"];
 _stringArray = _string splitString "";
