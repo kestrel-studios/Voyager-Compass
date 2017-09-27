@@ -3,7 +3,7 @@ class CfgFunctions {
     class Compass {
       file="\k\ugtx\addons\compass\functions";
       class compileCompass {};
-      class initCompass {};
+      class initCompass {postInit = 1;};
       class loadSettings {};
       class removeString {};
       class saveSettings {};

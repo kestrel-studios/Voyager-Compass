@@ -9,4 +9,4 @@ systemchat "init UGTX_fnc_initCompass";
 
 [] spawn UGTX_fnc_showCompass;
 
-(_this select 0) addAction ["Compass Settings", {[] call UGTX_fnc_showSettings;}];
+player addAction ["Compass Settings", {[] call UGTX_fnc_showSettings;}];
