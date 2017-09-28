@@ -1,6 +1,6 @@
 /*
   version 1.0
-  description: shows the compass with saved settings or default setttings if no settings saved
+  description: shows the compass with saved settings or default setttings if no settings saved. should only be executed once
 */
 systemchat "init UGTX_fnc_showCompass";
 

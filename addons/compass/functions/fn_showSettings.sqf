@@ -88,7 +88,7 @@ nc_dialog_controls = [
 	[[/*range*/0,1, ncX], "folder set [0, (_this select 1)]; nc_barOffsetX = ((_this select 1) * safezoneH + safezoneY)"]],
 
 	[1900,"nc_y",[1,"",[0.340156 * safezoneW + safezoneX,0.335 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"VERTICAL POSITION. Set the correct vertical position you desire.","RscSlider"],[],
-	[[/*range*/0,1, ncY], "folder set [1, (_this select 1)]; nc_barOffsetY = ((_this select 1) * safezoneH + safezoneY)"]],
+	[[/*range*/0,1, ncY], "folder set [1, (_this select 1)]; nc_barOffsetY = ((_this select 1) * safezoneH + safezoneY); nc_marker_offset = ncMarkerY + nc_barOffsetY;"]],
 
 	[1902,"nc_w",[1,"",[0.340156 * safezoneW + safezoneX,0.368 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"WIDTH. Exact range of visibility for points.","RscSlider"],[],
 	[[/*range*/0,5, ncW], "folder set [2, (_this select 1)]; ncW = (_this select 1)"]],
@@ -117,7 +117,7 @@ nc_dialog_controls = [
 	[ncInvert, "folder set [9, (_this select 1)]; ncInvert = (_this select 1);  _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;"]],
 
 	[1906,"nc_markerY",[1,"",[0.340156 * safezoneW + safezoneX,0.841 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"VERTICAL OFFSET. Set the correct vertical offset you desire.","RscSlider"],[],
-	[[/*range*/-2,2, ncMarkerY], "folder set [12, (_this select 1)]; nc_marker_offset = (_this select 1) + nc_barOffsetY"]],
+	[[/*range*/-2,2, ncMarkerY], "folder set [12, (_this select 1)]; nc_marker_offset = (_this select 1) + nc_barOffsetY; ncMarkerY = (_this select 1);"]],
 
 	[2802,"nc_visibility",[1,"",[0.391719 * safezoneW + safezoneX,0.874 * safezoneH + safezoneY,0.0103125 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"VISIBILITY. Toggle it.","RscCheckBox"],[],
 	[ncMarkerVisibility, "folder set [11, (_this select 1)]; ncMarkerVisibility = (_this select 1)"]]
