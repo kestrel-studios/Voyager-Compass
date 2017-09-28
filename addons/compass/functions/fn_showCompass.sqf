@@ -25,15 +25,20 @@ ncFontOption          = _nc_settings select 8;
 ncInvert              = _nc_settings select 9;
 ncShadow              = _nc_settings select 10;
 ncMarkerVisibility    = _nc_settings select 11;
+ncMarkerY             = _nc_settings select 12;
 
 ncColorOption         = "f9f9f9";
 
 nc_barOffsetX         = (ncX * safezoneW + safezoneX);
 nc_barOffsetY         = (ncY * safezoneH + safezoneY);
-nc_marker_offset      = 0.04 + nc_barOffsetY;
+nc_marker_offset      = ncMarkerY + nc_barOffsetY;
 
 
 ("compassTitle" call BIS_fnc_rscLayer) cutRsc ["RscTitleDisplayEmpty", "PLAIN"];
+
+
+switch (ncShadow) do { case (0): { ncShadow = 0; }; case (1): { ncShadow = 2; };};
+
 _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;
 
 /// rendering of compass
@@ -100,6 +105,7 @@ combMarkers = [];
 }] call BIS_fnc_addStackedEventHandler;
 ///
 
+waitUntil {ncMarkerVisibility == 1;};
 
 while {true} do {
   /// create double array ([marker], [idc,marker])

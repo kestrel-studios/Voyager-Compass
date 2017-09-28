@@ -90,6 +90,7 @@ _nc_lb_type = [compass_pos, compass_pos_a3];
 disableSerialization;
 params ["_compassType", "_ncNeedle","_ncFontSize","_ncShadow","_ncFontOption", "_ncAlpha", "_ncColorOption"];
 
+switch (_ncShadow) do { case (0): { _ncShadow = 0; }; case (1): { _ncShadow = 2; }; default { _ncShadow = 2; };};
 
 _display = uiNamespace getVariable "RscTitleDisplayEmpty";
 
