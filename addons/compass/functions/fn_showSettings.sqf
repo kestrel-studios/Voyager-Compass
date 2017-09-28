@@ -33,9 +33,6 @@ if (isNil "folder") then {
   folder = [0.499889,0.0346965,3.16098,1.86439,0,1.18143,"C0",0.753254,"PuristaLight",0,1,1,-0.0340903,5,1,0,"B1B1","FFFFFF"];
 };
 
-("compassTitle" call BIS_fnc_rscLayer) cutRsc ["RscTitleDisplayEmpty", "PLAIN"];
-
-
 ncX                 = folder select 0;
 ncY                 = folder select 1;
 ncW                 = folder select 2;
@@ -207,5 +204,3 @@ with uiNamespace do {
   _ctrl ctrlCommit 0;
   _ctrl ctrlSetTooltip _tooltip;
 } forEach nc_dialog_controls;
-
-[] spawn UGTX_fnc_showCompass;
