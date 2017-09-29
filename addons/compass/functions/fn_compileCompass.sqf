@@ -100,6 +100,8 @@ for "_i" from 3399 to 3499 do
 };
 _compass = _nc_lb_type select _compassType;
 _compassNeedle = _display ctrlCreate ["RscStructuredText", 3399];
+_compassNeedle ctrlSetPosition [-2, -2, 0.05, 0.05];
+
 _compassNeedle ctrlSetStructuredText parseText format["<t shadow=2><t shadowColor='#ff0000' align='center' size='%1' color='#f9f9f9'>|</t>", 0.65];
 
 for "_i" from 0 to (count _compass - 1) do
@@ -118,6 +120,7 @@ for "_i" from 0 to (count _compass - 1) do
     nc_sizeX = 0.8 * _ncFontSize;
   };
   _edit = _display ctrlCreate ["RscStructuredText", _idc];
+  _edit ctrlSetPosition [-2, -2, 0.05, 0.05];
 
   _var_needle = "";
   switch (_ncNeedle) do {

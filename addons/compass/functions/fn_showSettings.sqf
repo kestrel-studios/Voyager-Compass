@@ -76,7 +76,7 @@ nc_dialog_controls = [
 	[1112,"nc_background_pos_markerY",[1,"Y",[0.314375 * safezoneW + safezoneX,0.83 * safezoneH + safezoneY,0.0154688 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[0,0,0,0],[-1,-1,-1,-1],"VERTICAL OFFSET. Set the correct vertical offset you desire.","RscStructuredText"],[]],
 	[1113,"nc_background_visibility",[1,"Visbility",[0.402031 * safezoneW + safezoneX,0.874 * safezoneH + safezoneY,0.0360937 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[0,0,0,0],[-1,-1,-1,-1],"VISIBILITY. Toggle it.","RscStructuredText"],[]],
   [1114,"nc_background_info_soon",[1,"more features soon",[0.314375 * safezoneW + safezoneX,0.874 * safezoneH + safezoneY,0.0825 * safezoneW,0.022 * safezoneH],[1,1,1,0.3],[0,0,0,0],[-1,-1,-1,-1],"INFO. Future updates coming. Stay tuned","RscText"],[]],
-	[1115,"nc_background_impressum",[1,"Voyage Compass 1.0",[0.304062 * safezoneW + safezoneX,0.94 * safezoneH + safezoneY,0.0825 * safezoneW,0.022 * safezoneH],[1,1,1,0.3],[0,0,0,0],[-1,-1,-1,-1],"Creator: Unknown_GTX aka JonVeD","RscText"],[]],
+	[1115,"nc_background_impressum",[1,"Voyager Compass 1.1",[0.304062 * safezoneW + safezoneX,0.94 * safezoneH + safezoneY,0.0825 * safezoneW,0.022 * safezoneH],[1,1,1,0.3],[0,0,0,0],[-1,-1,-1,-1],"Creator: Unknown_GTX & Flax","RscText"],[]],
   [2400,"nc_save",[1,"SAVE",[0.412344 * safezoneW + safezoneX,0.94 * safezoneH + safezoneY,0.04125 * safezoneW,0.022 * safezoneH],[0.07,0.07,0.07,1],[0.93,0.93,0.93,1],[0.07,0.07,0.07,1],"Permanently save changes. (stays even after restarting the game)","RscButton"],[],
   ["profileNamespace setVariable ['nc_settings',folder]; saveProfileNamespace;"]],
 	[2401,"nc_close",[1,"X",[0.391719 * safezoneW + safezoneX,0.94 * safezoneH + safezoneY,0.0154688 * safezoneW,0.022 * safezoneH],[0.07,0.07,0.07,1],[0.93,0.93,0.93,1],[-1,-1,-1,-1],"Close without save.","RscButton"],[],
@@ -96,8 +96,8 @@ nc_dialog_controls = [
 	[1903,"nc_s",[1,"",[0.340156 * safezoneW + safezoneX,0.401 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"SPAN. Change the distance between the points.","RscSlider"],[],
 	[[/*range*/1,3, ncSpan], "folder set [3, (_this select 1)]; ncSpan = (_this select 1)"]],
 
-	[2100,"nc_type",[1,"",[0.319531 * safezoneW + safezoneX,0.511 * safezoneH + safezoneY,0.118594 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"TYPE. Decide what kind of compass you want.","RscCombo"],[],
-	[["Arma 3","Battlegrounds"], "folder set [15, (_this select 1)]; ncType = (_this select 1)", ncTypeNr]],
+	[2100,"nc_type",[1,"",[0.319531 * safezoneW + safezoneX,0.511 * safezoneH + safezoneY,0.118594 * safezoneW,0.022 * safezoneH],[-1,-1,-1,-1],[-1,-1,-1,-1],[-1,-1,-1,-1],"TYPE. Work in progress.","RscCombo"],[],
+	[["Battlegrounds","Arma 3"], "folder set [15, (_this select 1)]; ncType = (_this select 1)", ncTypeNr]],
 
 	[1904,"nc_fontSize",[1,"",[0.340156 * safezoneW + safezoneX,0.555 * safezoneH + safezoneY,0.0979687 * safezoneW,0.011 * safezoneH],[-1,-1,-1,-1],[1,1,1,1],[-1,-1,-1,-1],"SIZE-FONT. Determines the size of the individual cardinal points.","RscSlider"],[],
 	[[/*range*/0.8,1.4, ncFontSize], "folder set [5, (_this select 1)]; ncFontSize = (_this select 1); _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;"]],

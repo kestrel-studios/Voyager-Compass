@@ -117,6 +117,8 @@ while {true} do {
 
       _edit  = _display ctrlCreate ["RscStructuredText", _idc];
       _edit2 = _display ctrlCreate ["RscStructuredText", _idc + 100];
+      _edit ctrlSetPosition [-2, -2, 0.05, 0.05];
+      _edit2 ctrlSetPosition [-2, -2, 0.05, 0.05];
 
       _img =  getText (configfile >> "cfgMarkers" >> markerType _x >> "icon");
       _txt = parseText format ["<img image='%1' align='center'/>", _img];
