@@ -42,6 +42,7 @@ switch (ncShadow) do { case (0): { ncShadow = 0; }; case (1): { ncShadow = 2; };
 _comp = [ncType, ncInvert, ncFontSize, ncShadow, ncFontOption, ncAlpha, ncColorOption] call UGTX_fnc_compileCompass;
 
 /// rendering of compass
+allUserMarkers = [];
 currentMarkers = [];
 combMarkers = [];
 
@@ -108,11 +109,22 @@ combMarkers = [];
 waitUntil {ncMarkerVisibility == 1;};
 
 while {true} do {
+  /// create user array [marker]
+  {
+    if !(_x in currentMarkers) then {
+      _a = toArray _x;
+      _a resize 15;
+      if (toString _a == "_USER_DEFINED #") then {
+        allUserMarkers pushBack _x;
+      };
+    };
+  } forEach allMapMarkers;
+  ///
   /// create double array ([marker], [idc,marker])
   {
     if !(_x in currentMarkers) then {
       _display = uiNamespace getVariable "RscTitleDisplayEmpty";
-      _index = allMapMarkers find _x;
+      _index = allUserMarkers find _x;
       _idc = 5500 + _index;
 
       _edit  = _display ctrlCreate ["RscStructuredText", _idc];
@@ -128,21 +140,28 @@ while {true} do {
       _edit  ctrlCommit 0;
       _edit2 ctrlCommit 0;
 
-      currentMarkers pushBack _x;
-      combMarkers pushBack [_idc, _x];
+
+        currentMarkers pushBack _x;
+        combMarkers pushBack [_idc, _x];
+      //};
       systemChat format ["created: %1", _x];
     };
-  } forEach allMapMarkers;
+  } forEach allUserMarkers;
   ///
 
   /// delete IF marker from [idc,marker] aint alive anymore
   {
-    if !((_x select 1) in allMapMarkers) then {
+    if !(_x in allMapMarkers) then {
+      allUserMarkers = allUserMarkers - [_x];
+      currentMarkers = currentMarkers - [_x];
+    };
+  } forEach allUserMarkers;
+  {
+    if !((_x select 1) in allUserMarkers) then {
       _display = uiNamespace getVariable "RscTitleDisplayEmpty";
       ctrlDelete (_display displayCtrl (_x select 0));
       ctrlDelete (_display displayCtrl ((_x select 0)+100));
       combMarkers = combMarkers - [_x];
-      currentMarkers = currentMarkers - [_x];
     };
   } forEach combMarkers;
   ///
