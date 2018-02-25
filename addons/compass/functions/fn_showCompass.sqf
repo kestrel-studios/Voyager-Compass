@@ -7,7 +7,6 @@ systemchat "init UGTX_fnc_showCompass";
 disableSerialization;
 
 
-
 _nc_settings = [] call UGTX_fnc_loadSettings;
 if (isNil "_nc_settings") then {
   _nc_settings = [0.499889,0.0346965,3.16098,1.86439,0,1.18143,"C0",0.753254,"PuristaLight",0,1,1,-0.0340903,5,1,0,"B1B1","FFFFFF"];
@@ -59,7 +58,13 @@ combMarkers = [];
     _ctrl = _x select 0;
     _pos = (_x select 1) / 100;
     _degreeControl = ((uiNamespace getVariable "RscTitleDisplayEmpty") displayCtrl _ctrl);
-    _playerDir = (getDir player)/100;
+
+
+    _sPos = screenToWorld [0.5,0.5];
+  	_pPos = getPos player;
+  	_playerDir = (((((_sPos select 0) - (_pPos select 0)) atan2 ((_sPos select 1) - (_pPos select 1))) + 360) % 360)/100;
+
+    //_playerDir = (getDir player)/100;
 
     _controlPos = (ctrlPosition _degreeControl) select 0;
 
